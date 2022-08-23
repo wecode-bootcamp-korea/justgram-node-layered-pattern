@@ -1,18 +1,9 @@
+const http = require('http')
 const dotenv = require('dotenv')
 dotenv.config()
-const http = require('http')
-const express = require('express')
-const router = require('./routers')
+const { createApp }= require('./app')
 
-const app = express()
-
-app.use(express.json())
-app.use(router)
-
-app.get('/ping', (req, res) => {
-  res.json({ message: '/ pong' })
-})
-
+const app = createApp()
 const server = http.createServer(app)
 
 server.listen(8000, () => {
